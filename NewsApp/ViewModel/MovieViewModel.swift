@@ -11,7 +11,7 @@ import Foundation
 class MovieViewModel {
     
     private var apiService = ApiService()
-    private var topRatedMovies = [Movie]()
+    var topRatedMovies = [Movie]()
     
     func fetchTopRatedMoviesData(completion: @escaping () -> ()) {
         
@@ -34,4 +34,5 @@ class MovieViewModel {
     func cellForRowAt(indexPath: IndexPath) -> Movie {
         return topRatedMovies[indexPath.row]
     }
+    
 }

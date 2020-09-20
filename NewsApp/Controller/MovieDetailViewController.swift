@@ -9,10 +9,35 @@
 import UIKit
 
 class MovieDetailViewController: UIViewController {
-    var movieArray: [Movie] = []
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var overviewLabel: UILabel!
+    
+    var movie: Movie? = nil
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let movie = movie {
+            nameLabel.text = movie.title
+            overviewLabel.text = movie.overview
+            
+            let urlString = "https://image.tmdb.org/t/p/w300" + movie.posterImage
+            let url = URL(string: urlString)!
+            let session = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                if let data = data {
+                    let image = UIImage(data: data)
+                    self.imageView.image = image
+                }
+            })
+            session.resume()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     

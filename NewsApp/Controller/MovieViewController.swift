@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import PullToRefresh
+import AnimatableReload
+import SwipeCellKit
+import RealmSwift
 
 class MovieViewController: UIViewController {
     
@@ -14,20 +18,31 @@ class MovieViewController: UIViewController {
     
     private var viewModel = MovieViewModel()
     
+    lazy var refresher: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(loadPopularMoviesData), for: .valueChanged)
+        
+        return refreshControl
+    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        tableView.refreshControl = refresher
         loadPopularMoviesData()
     }
-    
-    private func loadPopularMoviesData() {
+
+    @objc private func loadPopularMoviesData() {
         viewModel.fetchTopRatedMoviesData { [weak self] in
+            let deadline = DispatchTime.now() + .milliseconds(500)
+            DispatchQueue.main.asyncAfter(deadline: deadline) {
+                self?.refresher.endRefreshing()
+            }
             self?.tableView.dataSource = self
             self?.tableView.reloadData()
         }
     }
-    
 }
 
 // MARK: - TableView
@@ -42,22 +57,22 @@ extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
         cell.setCellWithValuesOf(movie)
         return cell
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard segue.identifier == "toMovieDetail"  else {
-//            return
-//        }
-//        
-//        if let movieDetailView = segue.destination as? MovieDetailViewController {
-//            if let cell = sender as? MovieTableViewCell {
-//                if let indexPath = tableView.indexPath(for: cell) {
-//                    let quote = [indexPath.section]
-//                    quoteDetailView.quote = quote
-//                }
-//                
-//                
-//            }
-//        }
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "toMovieDetail", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMovieDetail" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let destVC = segue.destination as! MovieDetailViewController
+                destVC.movie = viewModel.topRatedMovies[indexPath.row]
+            }
+        }
+    }
+    
+
+
     
     
 }

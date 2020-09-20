@@ -71,7 +71,7 @@ class MovieTableViewCell: UITableViewCell {
                     self.movieImage.image = image
                 }
             }
-        }.resume()
+        }.resume()  
     }
     
     // MARK: - Convert date format

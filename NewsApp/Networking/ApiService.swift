@@ -11,6 +11,10 @@ import Foundation
 class ApiService {
     
     private var dataTask: URLSessionDataTask?
+    private var movieArray: [Movie] = []
+    
+    private var oldMovies: [String: String] = [:]
+    
     
     func getMoviesData(completion: @escaping (Result <MoviesData, Error>) -> Void) {
         

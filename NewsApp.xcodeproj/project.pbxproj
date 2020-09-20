@@ -19,6 +19,8 @@
 		CE45748825172B1C007DFEA6 /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45748725172B1C007DFEA6 /* MovieViewModel.swift */; };
 		CE4574AA251756ED007DFEA6 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4574A9251756ED007DFEA6 /* MovieTableViewCell.swift */; };
 		CE4BAA1A2517792F003D49F2 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BAA192517792F003D49F2 /* MovieDetailViewController.swift */; };
+		CE4BAA202517887E003D49F2 /* MovieCached.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BAA1F2517887E003D49F2 /* MovieCached.swift */; };
+		CE4BAA2225178B6A003D49F2 /* RealmMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BAA2125178B6A003D49F2 /* RealmMethods.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		CE45748725172B1C007DFEA6 /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
 		CE4574A9251756ED007DFEA6 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		CE4BAA192517792F003D49F2 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		CE4BAA1F2517887E003D49F2 /* MovieCached.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCached.swift; sourceTree = "<group>"; };
+		CE4BAA2125178B6A003D49F2 /* RealmMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMethods.swift; sourceTree = "<group>"; };
 		D624B455C1B908469F51A14F /* Pods-NewsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsApp.release.xcconfig"; path = "Target Support Files/Pods-NewsApp/Pods-NewsApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				CE45748325166457007DFEA6 /* Model.swift */,
+				CE4BAA1F2517887E003D49F2 /* MovieCached.swift */,
+				CE4BAA2125178B6A003D49F2 /* RealmMethods.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -265,8 +271,10 @@
 				CE457486251667E1007DFEA6 /* ApiService.swift in Sources */,
 				CE4574AA251756ED007DFEA6 /* MovieTableViewCell.swift in Sources */,
 				CE45748825172B1C007DFEA6 /* MovieViewModel.swift in Sources */,
+				CE4BAA2225178B6A003D49F2 /* RealmMethods.swift in Sources */,
 				CE4BAA1A2517792F003D49F2 /* MovieDetailViewController.swift in Sources */,
 				CE4574702514C42A007DFEA6 /* AppDelegate.swift in Sources */,
+				CE4BAA202517887E003D49F2 /* MovieCached.swift in Sources */,
 				CE4574722514C42A007DFEA6 /* SceneDelegate.swift in Sources */,
 				CE45748425166457007DFEA6 /* Model.swift in Sources */,
 			);
