@@ -54,7 +54,30 @@ class MovieTableViewCell: UITableViewCell {
     
     // MARK: - Get image data
     
+    static func storeImage(urlString: String, img: UIImage) {
+        let path = NSTemporaryDirectory().appending(UUID().uuidString)
+        let url = URL(fileURLWithPath: path)
+        let data = img.jpegData(compressionQuality: 0.5)
+        try? data?.write(to: url)
+        
+        var dict = UserDefaults.standard.object(forKey: "ImageCahe") as? [String: String]
+        if dict == nil {
+            dict = [String: String]()
+        }
+        dict![urlString] = path
+        UserDefaults.standard.set(dict, forKey: "ImageCache")
+    }
+    
     private func getImageData(url: URL) {
+        
+        if let dict = UserDefaults.standard.object(forKey: "ImageCahe") as? [String: String] {
+            if let path = dict[urlString] {
+                if let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
+                    let img = UIImage(data: data)
+                }
+            }
+        }
+
         URLSession.shared.dataTask(with: url) { ( data, response, error) in
             // Handle error
             if let error = error {
@@ -68,6 +91,7 @@ class MovieTableViewCell: UITableViewCell {
             }
             DispatchQueue.main.async {
                 if let image = UIImage(data: data)  {
+                    MovieTableViewCell.storeImage(urlString: self.urlString, img: image)
                     self.movieImage.image = image
                 }
             }
