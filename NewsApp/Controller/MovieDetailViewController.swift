@@ -16,6 +16,9 @@ class MovieDetailViewController: UIViewController {
     
     @IBOutlet weak var overviewLabel: UILabel!
     
+    @IBOutlet weak var releaseDate: UILabel!
+    
+    @IBOutlet weak var ratingLabel: UILabel!
     var movie: Movie? = nil
     
     override func viewWillAppear(_ animated: Bool) {
@@ -23,6 +26,8 @@ class MovieDetailViewController: UIViewController {
         if let movie = movie {
             nameLabel.text = movie.title
             overviewLabel.text = movie.overview
+            releaseDate.text = "Release date: \(movie.year)"
+            ratingLabel.text = "Rating: \(movie.rate)"
             
             let urlString = "https://image.tmdb.org/t/p/w300" + movie.posterImage
             let url = URL(string: urlString)!
